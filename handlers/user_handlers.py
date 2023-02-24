@@ -52,7 +52,6 @@ async def process_bookmarks_command(message: Message):
         await message.answer(text=LEXICON['no_bookmarks'])
 
 
-
 async def process_forward_press(callback: CallbackQuery):
     if users_db[callback.from_user.id]['page'] < len(book):
         users_db[callback.from_user.id]['page'] += 1
@@ -89,7 +88,7 @@ async def process_bookmark_press(callback: CallbackQuery):
     text = book[int(callback.data)]
     users_db[callback.from_user.id]['page'] = int(callback.data)
     await callback.message.edit_text(
-                text=text, 
+                text=text,
                 reply_markup=create_pagination_keyboard(
                     'backward',
                     f'{users_db[callback.from_user.id]["page"]}/{len(book)}',

@@ -12,16 +12,15 @@ def _get_part_text(text: str, start: int, size: int) -> Tuple:
     if len(text) <= size + start:
         pg_size = len(text) - start
     else:
-        for i in range (size+start-1, start, -1):
+        for i in range(size+start-1, start, -1):
             if text[i] in chrs and text[i + 1] not in chrs:
                 break
             pg_size -= 1
     return [text[start: start + pg_size], pg_size]
 
 
-
 def prepare_book(path: str) -> None:
-    f = open(path,'r')
+    f = open(path, 'r')
     text: str = f.read()
     start: int = 0
     end: int = len(text)
